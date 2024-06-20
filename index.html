@@ -3,9 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Page</title>
+    <title>Facepalm Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #counter {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <p>Hello, World!</p>
+    <h1>Facepalm Counter</h1>
+    <div id="counter">0</div>
+    <button onclick="increaseCount()">Increase Facepalms</button>
+
+    <script>
+        // Get the counter element
+        const counterElement = document.getElementById('counter');
+
+        // Function to update the counter display
+        function updateCounterDisplay(count) {
+            counterElement.textContent = count;
+        }
+
+        // Function to get the count from localStorage
+        function getCount() {
+            return parseInt(localStorage.getItem('facepalmCount')) || 0;
+        }
+
+        // Function to set the count in localStorage
+        function setCount(count) {
+            localStorage.setItem('facepalmCount', count);
+        }
+
+        // Function to increase the count
+        function increaseCount() {
+            let count = getCount();
+            count += 1;
+            setCount(count);
+            updateCounterDisplay(count);
+        }
+
+        // Initialize the counter display on page load
+        window.onload = () => {
+            const initialCount = getCount();
+            updateCounterDisplay(initialCount);
+        };
+    </script>
 </body>
 </html>
